@@ -1,0 +1,69 @@
+{
+  "name": "Flexographer",
+  "version": "0.0.0",
+  "description": "The Book",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:all": "bun builder/index.ts --all",
+    "build:md": "bun builder/index.ts --md",
+    "build:html": "bun builder/index.ts --html",
+    "generate:pdf:from:md": "./scripts/generate_pdf.sh generate:pdf:from:md",
+    "generate:pdf:from:html": "./scripts/generate_pdf.sh generate:pdf:from:html",
+    "generate:pdf:from:md:algorithms": "./scripts/generate_pdf.sh generate:pdf:from:md:algorithms",
+    "generate:pdf:from:html:algorithms": "./scripts/generate_pdf.sh generate:pdf:from:html:algorithms",
+    "generate:all": "./scripts/generate_all.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndersDeath/holy-theory.git"
+  },
+  "keywords": [
+    "book",
+    "theory",
+    "computer",
+    "science",
+    "training",
+    "interview",
+    "questions"
+  ],
+  "author": {
+    "name": "Vladimir Bolshakov",
+    "email": "andersdeath@gmail.com",
+    "url": "https://github.com/AndersDeath"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndersDeath/holy-theory/issues"
+  },
+  "homepage": "https://github.com/AndersDeath/holy-theory#readme",
+  "devDependencies": {
+    "@types/marked": "^5.0.1",
+    "@types/pug": "^2.0.6",
+    "@types/yargs": "^17.0.31",
+    "cz-conventional-changelog": "^3.3.0",
+    "parse-md": "^3.0.3",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@eit6609/markdown-templates": "^1.0.0",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.18.3",
+    "fs-extra": "^11.1.1",
+    "highlight.js": "^11.8.0",
+    "marked": "^5.0.0",
+    "marked-gfm-heading-id": "^3.0.3",
+    "marked-highlight": "^2.0.1",
+    "marked-mangle": "^1.0.1",
+    "nodemon": "^3.1.1",
+    "puppeteer": "^21.4.1",
+    "typescript": "^5.1.6",
+    "yargs": "^17.7.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

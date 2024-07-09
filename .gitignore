@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.nuxt
+dist
+.vscode/*
+.idea
+builder3-logs.log
+builder3-logs.json
+output

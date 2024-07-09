@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "builder3Server"
+  ],
+  "ext": "ts,json,html",
+  "ignore": [
+    "builder3Server/**/*.spec.ts"
+  ],
+  "exec": "ts-node ./builder3Server/index.ts"
+}
