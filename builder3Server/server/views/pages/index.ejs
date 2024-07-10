@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Builder3</title>
+  <script>
+    window.onload = function() {
+      document
+        .querySelector("#clear_everything")
+        .addEventListener("click", () => {
+          if (!confirm("Are you sure you want to clear everything?")) {
+            event.preventDefault();
+          }
+        });
+    };
+  </script>
+</head>
+
+<body>
+  <h1>Builder3</h1>
+  <form action="/builder/run">
+    <h3>Categories: </h3>
+    <% categories.forEach((item) => { %>
+    <input type="checkbox" name="categories" value="<%= item %>" /><%= item %> <br>
+    <% }) %>
+    <h3>Targets: </h3>
+    <% targets.forEach((item) => { %>
+    <input type="checkbox" name="targets" value="<%= item %>" /><%= item %> <br>
+    <% }) %>
+
+    <button type="submit">Generate</button>
+  </form>
+  <form action="/clear-everything" id="clear_everything">
+    <button type="submit">Clear everything</button>
+  </form>
+</body>
+
+</html>

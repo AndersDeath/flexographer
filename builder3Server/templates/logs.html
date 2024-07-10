@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Builder</title>
+    <script>
+      window.onload = function () {
+        document.querySelector("#clear_logs").addEventListener("click", (event) => {
+          if (!confirm("Are you sure you want to clear logs?")) {
+            event.preventDefault();
+          }
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Logs</h1>
+    <form action="/builder/logs">
+      <button type="submit">Refresh</button>
+    </form>
+    <form action="/builder/logs/clear">
+      <button type="submit" id="clear_logs">Clear logs</button>
+    </form>
+    <form action="/builder/run">
+      <button type="submit">Generate</button>
+    </form>
+    put_logs_here
+  </body>
+</html>
