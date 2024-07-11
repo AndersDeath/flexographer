@@ -1,7 +1,7 @@
 {
   "name": "Flexographer",
   "version": "0.0.0",
-  "description": "The Book",
+  "description": "Flexographer is a tool that helps to build a book from markdown files",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,11 +32,11 @@
     "email": "andersdeath@gmail.com",
     "url": "https://github.com/AndersDeath"
   },
-  "license": "ISC",
+  "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/AndersDeath/holy-theory/issues"
+    "url": "https://github.com/AndersDeath/flexographer/issues"
   },
-  "homepage": "https://github.com/AndersDeath/holy-theory#readme",
+  "homepage": "https://github.com/AndersDeath/flexographer#readme",
   "devDependencies": {
     "@types/marked": "^5.0.1",
     "@types/pug": "^2.0.6",
