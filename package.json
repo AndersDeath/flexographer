@@ -16,16 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AndersDeath/holy-theory.git"
+    "url": "git+https://github.com/AndersDeath/flexographer.git"
   },
   "keywords": [
-    "book",
-    "theory",
-    "computer",
-    "science",
-    "training",
-    "interview",
-    "questions"
   ],
   "author": {
     "name": "Vladimir Bolshakov",
@@ -57,9 +50,7 @@
     "marked-highlight": "^2.0.1",
     "marked-mangle": "^1.0.1",
     "nodemon": "^3.1.1",
-    "puppeteer": "^21.4.1",
-    "typescript": "^5.1.6",
-    "yargs": "^17.7.2"
+    "typescript": "^5.1.6"
   },
   "config": {
     "commitizen": {
