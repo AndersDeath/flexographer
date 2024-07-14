@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import  bodyParser  from "body-parser";
-import { routesInit } from "./server/bootstrap";
+import { routesInit } from "./bootstrap";
 import path from "path";
 
 const app: Express = express();
@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.set("views", path.join(__dirname, "./server/views/"));
+app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
 
 routesInit(app);
