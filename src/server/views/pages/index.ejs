@@ -12,7 +12,40 @@
             crossorigin="anonymous"></script>
     <script>
 
+        window.addEventListener("load", () => {
+            document.querySelector(".submit").addEventListener("click", async () => {
+                console.log('submit');
 
+
+                const files = document.getElementById("formFileMultiple").files;
+                if (files.length > 0) {
+                    const formData = new FormData();
+                    for (let i = 0; i < files.length; i++) {
+                        formData.append('files[]', files[i]);
+                    }
+                    const options = {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    };
+                    try {
+                        const response = await fetch('/api/markdown-source-files', options);
+                        if (response.ok) {
+                            const result = await response.json();
+                            console.log('Success:', result);
+                        } else {
+                            console.error('Error:', response.statusText);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                } else {
+                    alert('Please select files');
+                }
+            })
+        })
     </script>
 </head>
 
@@ -25,12 +58,14 @@
         Flexographer
     </a>
 </nav>
-
-<div class="mb-3  justify-content-center">
-<!--    <label for="formFileMultiple" class="form-label">Multiple files input example</label>-->
-    <input class="form-control" type="file" id="formFileMultiple" multiple>
+<div class="w-50 p-3">
+    <div class="mb-3 justify-content-center">
+        <input class="form-control" type="file" id="formFileMultiple" multiple>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary submit">submit</button>
+    </div>
 </div>
-
 
 </body>
 
