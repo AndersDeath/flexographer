@@ -16,19 +16,21 @@
             document.querySelector(".submit").addEventListener("click", async () => {
                 console.log('submit');
 
+                const form = document.getElementById('uploadForm');
+                const formData = new FormData(form);
 
                 const files = document.getElementById("formFileMultiple").files;
                 if (files.length > 0) {
-                    const formData = new FormData();
-                    for (let i = 0; i < files.length; i++) {
-                        formData.append('files[]', files[i]);
-                    }
+                    // const formData = new FormData();
+                    // for (let i = 0; i < files.length; i++) {
+                    //     formData.append('files[]', files[i]);
+                    // }
                     const options = {
                         method: 'POST',
                         body: formData,
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
+                        // headers: {
+                        //     "Content-Type": "multipart/form-data"
+                        // }
                     };
                     try {
                         const response = await fetch('/api/markdown-source-files', options);
@@ -59,9 +61,11 @@
     </a>
 </nav>
 <div class="w-50 p-3">
-    <div class="mb-3 justify-content-center">
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
-    </div>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="mb-3 justify-content-center">
+            <input class="form-control" name="files" type="file" id="formFileMultiple" multiple>
+        </div>
+    </form>
     <div>
         <button type="button" class="btn btn-primary submit">submit</button>
     </div>
