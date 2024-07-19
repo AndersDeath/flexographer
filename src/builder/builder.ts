@@ -19,7 +19,8 @@ const RunConfigDefault = {
   targets: [],
   bookSettings: {
     categories: []
-  }
+  },
+  sourcePath: './content'
 };
 
 export class Builder3 {
@@ -45,6 +46,9 @@ export class Builder3 {
 
   public async run(runConfig: RunConfig = RunConfigDefault): Promise<void> {
     console.log(runConfig);
+    if(runConfig.sourcePath) {
+      this.config.sourceRootPath = runConfig.sourcePath
+    }
     this.parseMDLibInstance = await this.parseMDInit();
     console.log("sss");
     const rConf = this.runConfigResolver(runConfig);
@@ -208,7 +212,7 @@ export class Builder3 {
           inputPath: `temp/prepared-book-${category}.md`,
           outputPath: `temp/output_from_html_${category}.pdf`,
           isTableOfContents: true,
-          metadataFile: `content/${category}/pandoc-config.yaml`
+          metadataFile: rConf.sourcePath+ `/${category}/pandoc-config.yaml`
         };
         await this.pandoc.generate(config);
       }

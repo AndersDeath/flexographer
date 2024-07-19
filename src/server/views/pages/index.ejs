@@ -21,16 +21,9 @@
 
                 const files = document.getElementById("formFileMultiple").files;
                 if (files.length > 0) {
-                    // const formData = new FormData();
-                    // for (let i = 0; i < files.length; i++) {
-                    //     formData.append('files[]', files[i]);
-                    // }
                     const options = {
                         method: 'POST',
-                        body: formData,
-                        // headers: {
-                        //     "Content-Type": "multipart/form-data"
-                        // }
+                        body: formData
                     };
                     try {
                         const response = await fetch('/api/markdown-source-files', options);
@@ -62,6 +55,12 @@
 </nav>
 <div class="w-50 p-3">
     <form id="uploadForm" enctype="multipart/form-data">
+        <div class="mb-3 justify-content-center">
+            <input name="categories" type="text" value="algorithms" />
+        </div>
+        <div class="mb-3 justify-content-center">
+            <input name="targets" type="text" value="book" />
+        </div>
         <div class="mb-3 justify-content-center">
             <input class="form-control" name="files" type="file" id="formFileMultiple" accept=".md" multiple>
         </div>

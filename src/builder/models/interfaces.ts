@@ -35,4 +35,5 @@ export interface RunConfig {
   bookSettings?: {
     categories: string[];
   };
+  sourcePath: string
 }

@@ -19,7 +19,8 @@ export const builderApiRunController: Controller = {
         targets: JSON.parse(targets || "[]"),
         bookSettings: {
           categories: JSON.parse(categories || "[]")
-        }
+        },
+        sourcePath: "./content"
       }).then(() => {
         logger.log("The work of script finished");
         logger.timeEnd("Builder working timer");

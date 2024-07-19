@@ -29,7 +29,8 @@ export const builderRunController: Controller = {
       targets,
       bookSettings: {
         categories
-      }
+      },
+      sourcePath: './content'
     }).then((): void => {
       logger.log("The work of script finished");
       logger.timeEnd("Builder working timer");
