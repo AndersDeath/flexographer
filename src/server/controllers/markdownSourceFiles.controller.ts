@@ -18,12 +18,12 @@ export const markdownSourceFilesController: Controller = {
             console.log(file)
             const content = fs.readFileSync(file.path, 'utf-8');
             fs.mkdirp('temp/' + categories, {recursive: true});
-            fs.writeFileSync('temp/' + categories + '/' + file.originalname, content, 'utf8')
+            fs.copyFileSync(file.path, 'temp/' + categories + '/' + file.originalname)
         }
         for (const file of req.files.images) {
-            const content = fs.readFileSync(file.path);
+            // const content = fs.readFileSync(file.path);
             fs.mkdirp('temp/images', {recursive: true});
-            fs.writeFileSync('temp/images/' + file.originalname, content)
+            fs.copyFileSync(file.path,'temp/images/' + file.originalname)
         }
         //
         setTimeout(() => {

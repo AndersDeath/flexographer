@@ -45,12 +45,12 @@ export class Builder3 {
   }
 
   public async run(runConfig: RunConfig = RunConfigDefault): Promise<void> {
-    console.log(runConfig);
+
     if(runConfig.sourcePath) {
       this.config.sourceRootPath = runConfig.sourcePath
     }
     this.parseMDLibInstance = await this.parseMDInit();
-    console.log("sss");
+
     const rConf = this.runConfigResolver(runConfig);
 
     await this.init();
@@ -59,7 +59,7 @@ export class Builder3 {
       await this.buildStaticHtml();
       await this.buildStaticMD();
       await this.detectBookBookTemplateCategoriesAndBuild(rConf);
-      await this.copyImageFolder();
+      // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
       await this.copyArtifactsFromTempToOutput(rConf);
       fs.rmSync("./temp", { recursive: true, force: true });
@@ -72,7 +72,7 @@ export class Builder3 {
       await this.buildStaticMD();
     if (rConf.targets && rConf.targets.includes("book")) {
       await this.detectBookBookTemplateCategoriesAndBuild(rConf);
-      await this.copyImageFolder();
+      // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
       await this.copyArtifactsFromTempToOutput(rConf);
       fs.rmSync("./temp", { recursive: true, force: true });
@@ -118,7 +118,6 @@ export class Builder3 {
   }
 
   private async parseMDInit(): Promise<any> {
-    console.log("sd");
     const module = await import("parse-md");
     const parseMD = module.default;
     return parseMD;
