@@ -20,6 +20,7 @@
                 const formData = new FormData(form);
 
                 const files = document.getElementById("formFileMultiple").files;
+                console.log(form)
                 if (files.length > 0) {
                     const options = {
                         method: 'POST',
@@ -56,13 +57,16 @@
 <div class="w-50 p-3">
     <form id="uploadForm" enctype="multipart/form-data">
         <div class="mb-3 justify-content-center">
-            <input name="categories" type="text" value="algorithms" />
+            <input name="categories" type="text" value="algorithms"/>
         </div>
         <div class="mb-3 justify-content-center">
-            <input name="targets" type="text" value="book" />
+            <input name="targets" type="text" value="book"/>
         </div>
         <div class="mb-3 justify-content-center">
             <input class="form-control" name="files" type="file" id="formFileMultiple" accept=".md" multiple>
+        </div>
+        <div class="mb-3 justify-content-center">
+            <input class="form-control" name="images" type="file" id="formFileMultiple" multiple>
         </div>
     </form>
     <div>

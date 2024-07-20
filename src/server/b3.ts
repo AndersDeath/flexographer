@@ -5,5 +5,5 @@ export const B3: Builder3 = new Builder3({
   htmlOutputPath: "./static2",
   markdownOutputPath: "./markdown2",
   tempFolderPath: "./temp",
-  imageFolderPath: "./images"
+  imageFolderPath: "./temp/images"
 });
