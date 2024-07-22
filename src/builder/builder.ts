@@ -12,7 +12,7 @@ import { FileGroup } from "./file-group";
 import { marked } from "./libs/marked";
 import { Logger } from "./logger/logger";
 import { Builder3FS } from "./builder-fs";
-import { Pandoc } from "./pandoc";
+import {Pandoc, PandocInput} from "./pandoc";
 import { pageBreakHtml } from "./ui";
 
 const RunConfigDefault = {
@@ -51,7 +51,7 @@ export class Builder3 {
     }
     this.parseMDLibInstance = await this.parseMDInit();
 
-    const rConf = this.runConfigResolver(runConfig);
+    const rConf: RunConfig = this.runConfigResolver(runConfig);
 
     await this.init();
 
@@ -83,9 +83,9 @@ export class Builder3 {
   private async detectBookBookTemplateCategoriesAndBuild(
     rConf: RunConfig
   ): Promise<void> {
-    const categories = rConf.bookSettings?.categories ?? [];
+    const categories: string[] = rConf.bookSettings?.categories ?? [];
     await Promise.all(
-      categories.map((element) => this.buildBookTemplate(element))
+      categories.map((element: string) => this.buildBookTemplate(element))
     );
   }
 
@@ -102,7 +102,7 @@ export class Builder3 {
       if (fs.statSync(folderPath).isDirectory()) {
         const sourceFiles: B3File[] = await this.parseFolder(folderPath);
         const parsedContentWithCategory: RawContent[] = await Promise.all(
-          sourceFiles.map((file) => this.parseRawContent(folder, file))
+          sourceFiles.map((file: B3File) => this.parseRawContent(folder, file))
         );
         this.rawContent.push(...parsedContentWithCategory);
       }
@@ -112,7 +112,7 @@ export class Builder3 {
 
   private getCategories():string[] {
     const folders: string[] = fs.readdirSync(this.config.sourceRootPath);
-    return folders.filter((folder) =>
+    return folders.filter((folder: string) =>
       fs.statSync(path.join(this.config.sourceRootPath, folder)).isDirectory()
     );
   }
@@ -171,7 +171,7 @@ export class Builder3 {
     outputPath: string
   ): Promise<void> {
     this.config.outputType = outputType;
-    const fileGroup = new FileGroup(this.config, this.rawContent);
+    const fileGroup: FileGroup = new FileGroup(this.config, this.rawContent);
     const files: B3File[] = await fileGroup.run();
 
     for (const file of files) {
@@ -207,7 +207,7 @@ export class Builder3 {
   private async buildBookPdf(rConf: RunConfig): Promise<void> {
     if (rConf.bookSettings.categories.length > 0) {
       for (const category of rConf.bookSettings.categories) {
-        const config = {
+        const config: PandocInput = {
           inputPath: `temp/prepared-book-${category}.md`,
           outputPath: `temp/output_from_html_${category}.pdf`,
           isTableOfContents: true,

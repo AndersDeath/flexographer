@@ -1,7 +1,7 @@
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
-interface PandocInput {
+export interface PandocInput {
   inputPath: string;
   outputPath: string;
   metadataFile?: string;
