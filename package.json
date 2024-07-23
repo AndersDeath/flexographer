@@ -32,7 +32,9 @@
   "devDependencies": {
     "@types/marked": "^5.0.1",
     "@types/pug": "^2.0.6",
+    "@types/swagger-ui-express": "^4.1.6",
     "@types/yargs": "^17.0.31",
+    "concurrently": "^8.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "parse-md": "^3.0.3",
     "ts-node": "^10.9.1"
@@ -48,8 +50,10 @@
     "marked-gfm-heading-id": "^3.0.3",
     "marked-highlight": "^2.0.1",
     "marked-mangle": "^1.0.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.1",
+    "swagger-ui-express": "^5.0.1",
     "typescript": "^5.1.6"
   },
   "config": {
