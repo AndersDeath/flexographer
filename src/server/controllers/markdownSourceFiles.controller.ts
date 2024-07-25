@@ -9,11 +9,11 @@ export const markdownSourceFilesController: Controller = {
     route: "/api/markdown-source-files",
     method: "POST",
     middleware: upload.fields([{name: 'files', maxCount: 100}, {name: 'images', maxCount: 100}]),
-    controller: async (req: Request, res: Response): Promise<void> => {
+    controller: async (req: any, res: Response): Promise<void> => {
         const {categories, targets} = fetchBodyParams(req);
-        console.log(Object.keys(req.files).length)
-        console.log(req.files.files.length)
-        console.log(req.files.images.length)
+        // console.log(Object.keys(req.files).length)
+        // console.log(req.files.files.length)
+        // console.log(req.files.images.length)
         // fs.rmSync('temp', {recursive: true, force: true});
         fs.mkdirp('temp');
         for (const file of req.files.files) {
@@ -25,24 +25,21 @@ export const markdownSourceFilesController: Controller = {
         for (const file of req.files.images) {
             // const content = fs.readFileSync(file.path);
             fs.mkdirp('temp/images', {recursive: true});
-            fs.copyFileSync(file.path,'temp/images/' + file.originalname)
+            fs.copyFileSync(file.path, 'temp/images/' + file.originalname)
         }
 
         //
-        setTimeout(() => {
-            B3.run({
-                targets,
-                bookSettings: {
-                    categories: [categories]
-                },
-                sourcePath: "./temp"
-            }).then((): void => {
-                console.log('Builder3 has done')
-                // logger.log("The work of script finished");
-                // logger.timeEnd("Builder working timer");
-            });
-
-        }, 6000)
+        B3.run({
+            targets,
+            bookSettings: {
+                categories: [categories]
+            },
+            sourcePath: "./temp"
+        }).then((): void => {
+            console.log('Builder3 has done')
+            // logger.log("The work of script finished");
+            // logger.timeEnd("Builder working timer");
+        });
 
 
         res.send({
