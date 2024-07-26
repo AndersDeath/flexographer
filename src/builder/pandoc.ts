@@ -13,7 +13,7 @@ export class Pandoc {
   }
 
   async generate(input: PandocInput): Promise<void> {
-    const cmd = this.createCommand(input);
+    const cmd: string = this.createCommand(input);
     const { stdout, stderr } = await exec(cmd);
     console.log("stdout:", stdout);
     console.log("stderr:", stderr);
