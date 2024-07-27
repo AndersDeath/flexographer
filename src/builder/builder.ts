@@ -15,7 +15,7 @@ import { Builder3FS } from "./builder-fs";
 import {Pandoc, PandocInput} from "./pandoc";
 import { pageBreakHtml } from "./ui";
 
-const RunConfigDefault = {
+const RunConfigDefault: RunConfig = {
   targets: [],
   bookSettings: {
     categories: []
@@ -26,7 +26,7 @@ const RunConfigDefault = {
 export class Builder3 {
   private parseMDLibInstance: any;
   private rawContent: RawContent[] = [];
-  private config: Config;
+  private readonly config: Config;
   private logger: Logger = new Logger();
   private b3fs: Builder3FS = new Builder3FS();
   private pandoc: Pandoc = new Pandoc();
