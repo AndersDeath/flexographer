@@ -12,8 +12,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 if (fs.existsSync('./output')) {
-    console.log('thi s i ')
-    app.use(express.static(__dirname + '/output'))
+    app.use('/output',express.static( './output'))
 }
 
 
