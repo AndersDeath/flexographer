@@ -72,6 +72,15 @@
     <div>
         <button type="button" class="btn btn-primary submit">submit</button>
     </div>
+    <br>
+    <% if(obj.length > 0){ %>
+        <h3>Output folder: </h3>
+        <ul>
+            <% for(var i = 0; i < obj.length; i++) { %>
+                <li><a target="_blank" href="<%= obj[i].href %>"><%= obj[i].title %></a></li>
+            <% } %>
+        </ul>
+    <% } %>
 </div>
 
 </body>
