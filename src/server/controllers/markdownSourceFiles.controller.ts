@@ -18,7 +18,10 @@ export const markdownSourceFilesController: Controller = {
     middleware: upload.fields([{name: 'files', maxCount: 100}, {name: 'images', maxCount: 100}]),
     controller: async (req: RequestWithFiles, res: Response): Promise<void> => {
         const {categories, targets} = fetchBodyParams(req);
-        fs.mkdirSync('temp');
+        if(!fs.existsSync('./temp')) {
+            fs.mkdirSync('temp');
+        }
+
         for (const file of req.files.files) {
             fs.mkdirp('temp/' + categories, {recursive: true});
             fs.copyFileSync(file.path, 'temp/' + categories + '/' + file.originalname)

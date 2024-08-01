@@ -62,7 +62,7 @@ export class Builder3 {
       // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
       await this.copyArtifactsFromTempToOutput(rConf);
-      fs.rmSync("./temp", { recursive: true, force: true });
+      // fs.rmSync("./temp", { recursive: true, force: true });
       return;
     }
 
@@ -75,7 +75,7 @@ export class Builder3 {
       // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
       await this.copyArtifactsFromTempToOutput(rConf);
-      fs.rmSync("./temp", { recursive: true, force: true });
+      // fs.rmSync("./temp", { recursive: true, force: true });
     }
     return;
   }
@@ -233,7 +233,7 @@ export class Builder3 {
   ): Promise<string> {
     return content.replace(
       /https:\/\/raw\.githubusercontent\.com\/AndersDeath\/holy-theory\/main\/images/g,
-      path.join("./", "images")
+        "./temp/images"
     );
   }
 
