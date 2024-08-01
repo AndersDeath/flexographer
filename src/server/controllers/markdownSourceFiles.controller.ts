@@ -35,7 +35,8 @@ export const markdownSourceFilesController: Controller = {
             },
             sourcePath: "./temp"
         }).then((): void => {
-            console.log('Builder3 has done')
+            console.log('Builder3 has done');
+            fs.rmSync("./uploads", { recursive: true, force: true });
             // logger.log("The work of script finished");
             // logger.timeEnd("Builder working timer");
         });
