@@ -9,7 +9,7 @@ import { builderApiRunController } from "./api/builderApiRun.controller";
 import { builderApiClearEverythingController } from "./api/builderApiClearEverything.controller";
 import { builderApiGetCategoriesController } from "./api/builderApiGetCategories.controller";
 import { builderApiGetTargetsController } from "./api/builderApiGetTargets.controller";
-import { markdownSourceFilesController } from "./markdownSourceFiles.controller";
+import { builderApiMarkdownSourceFilesController } from "./api/builderApiMarkdownSourceFiles.controller";
 
 import { Controller } from "../models/controller.model";
 
@@ -25,7 +25,7 @@ export {
   builderApiClearEverythingController,
   builderApiGetCategoriesController,
   builderApiGetTargetsController,
-  markdownSourceFilesController
+  builderApiMarkdownSourceFilesController
 };
 
 export const Controllers: Controller[] = [
@@ -40,5 +40,5 @@ export const Controllers: Controller[] = [
   builderApiClearEverythingController,
   builderApiGetCategoriesController,
   builderApiGetTargetsController,
-  markdownSourceFilesController
+  builderApiMarkdownSourceFilesController
 ];

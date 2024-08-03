@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import {Controller} from "../models/controller.model";
-import {fetchBodyParams} from "../utils/fetchBodyParams";
-import {upload} from '../storage';
+import {Controller} from "../../models/controller.model";
+import {fetchBodyParams} from "../../utils/fetchBodyParams";
+import {upload} from '../../storage';
 import * as fs from 'fs-extra';
-import {B3} from "../b3";
+import {B3} from "../../b3";
 
 interface RequestWithFiles extends Request {
     files: {
@@ -12,7 +12,7 @@ interface RequestWithFiles extends Request {
     }
 }
 
-export const markdownSourceFilesController: Controller = {
+export const builderApiMarkdownSourceFilesController: Controller = {
     route: "/api/markdown-source-files",
     method: "POST",
     middleware: upload.fields([{name: 'files', maxCount: 100}, {name: 'images', maxCount: 100}]),
