@@ -199,10 +199,17 @@ export class Builder3 {
     fs.mkdirp(this.config.tempFolderPath);
     for (const file of files) {
       file.content = await this.replaceGlobalImagePathToLocal(file.content);
+      file.content = await this.removeIgnoreBlock(file.content);
       // file.content = await this.replaceMarkdownPageBreakToHtml(file.content);
       fs.writeFileSync(file.path, file.content);
     }
   }
+
+  private removeIgnoreBlock = (content: string): string => {
+    const regex: RegExp = /<!-- ignore start -->(.*?)<!-- ignore end -->/g;
+    content.replace(regex, "");
+    return content;
+  };
 
   private async buildBookPdf(rConf: RunConfig): Promise<void> {
     if (rConf.bookSettings.categories.length > 0) {
