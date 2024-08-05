@@ -13,7 +13,7 @@ import { marked } from "./libs/marked";
 import { Logger } from "./logger/logger";
 import { Builder3FS } from "./builder-fs";
 import {Pandoc, PandocInput} from "./pandoc";
-import { pageBreakHtml } from "./ui";
+import {Utils} from "./utils";
 
 const RunConfigDefault: RunConfig = {
   targets: [],
@@ -29,6 +29,7 @@ export class Builder3 {
   private readonly config: Config;
   private logger: Logger = new Logger();
   private b3fs: Builder3FS = new Builder3FS();
+  private utils: Utils = new Utils();
   private pandoc: Pandoc = new Pandoc();
 
   constructor(config: Config) {
@@ -61,7 +62,7 @@ export class Builder3 {
       await this.detectBookBookTemplateCategoriesAndBuild(rConf);
       // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
-      await this.copyArtifactsFromTempToOutput(rConf);
+      await this.b3fs.copyArtifactsFromTempToOutput(rConf);
       fs.rmSync("./temp", { recursive: true, force: true });
       return;
     }
@@ -74,7 +75,7 @@ export class Builder3 {
       await this.detectBookBookTemplateCategoriesAndBuild(rConf);
       // await this.copyImageFolder();
       await this.buildBookPdf(rConf);
-      await this.copyArtifactsFromTempToOutput(rConf);
+      await this.b3fs.copyArtifactsFromTempToOutput(rConf);
       fs.rmSync("./temp", { recursive: true, force: true });
     }
     return;
@@ -188,7 +189,7 @@ export class Builder3 {
   }
 
   private async buildBookTemplate(category: string): Promise<void> {
-    this.logger.log("Build prepared Html Book Template " + category);
+    this.logger.log("Build prepared Markdown Book Template " + category);
     this.config.targetCategory = category;
     this.config.outputType = OutputFileTypes.MD;
     const fileGroup = new FileGroup(this.config, this.rawContent);
@@ -198,18 +199,12 @@ export class Builder3 {
 
     fs.mkdirp(this.config.tempFolderPath);
     for (const file of files) {
-      file.content = await this.replaceGlobalImagePathToLocal(file.content);
-      file.content = await this.removeIgnoreBlock(file.content);
+      file.content = await this.utils.replaceGlobalImagePathToLocal(file.content);
+      file.content = await this.utils.removeIgnoreBlock(file.content);
       // file.content = await this.replaceMarkdownPageBreakToHtml(file.content);
       fs.writeFileSync(file.path, file.content);
     }
   }
-
-  private removeIgnoreBlock = (content: string): string => {
-    const regex: RegExp = /<!-- ignore start -->(.*?)<!-- ignore end -->/g;
-    content.replace(regex, "");
-    return content;
-  };
 
   private async buildBookPdf(rConf: RunConfig): Promise<void> {
     if (rConf.bookSettings.categories.length > 0) {
@@ -235,32 +230,5 @@ export class Builder3 {
     );
   }
 
-  private async replaceGlobalImagePathToLocal(
-    content: string
-  ): Promise<string> {
-    return content.replace(
-      /https:\/\/raw\.githubusercontent\.com\/AndersDeath\/holy-theory\/main\/images/g,
-        "./temp/images"
-    );
-  }
 
-  private async replaceMarkdownPageBreakToHtml(
-    content: string
-  ): Promise<string> {
-    return content.replace(
-      /\\newpage/g,
-      path.join("./", pageBreakHtml())
-    );
-  }
-
-  private async copyArtifactsFromTempToOutput(rConf: RunConfig): Promise<void> {
-    if (rConf.bookSettings.categories.length > 0) {
-      fs.mkdirp("output");
-      rConf.bookSettings.categories.forEach((category: string): void => {
-        fs.copyFileSync(`temp/output_from_html_${category}.pdf`, `output/${category}-${Date.now()}.pdf`);
-      });
-    } else {
-      this.logger.throwError("There are not categories in request");
-    }
-  }
 }
