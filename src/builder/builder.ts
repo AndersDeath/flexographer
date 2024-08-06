@@ -129,7 +129,7 @@ export class Builder3 {
     return {
       category,
       metadata,
-      content,
+      content: this.utils.removeIgnoreBlock(content),
       folderPath: "",
       fileName: file.name
     };

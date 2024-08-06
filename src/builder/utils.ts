@@ -22,8 +22,9 @@ export class Utils {
   }
 
   public removeIgnoreBlock = (content: string): string => {
-    const regex: RegExp = /<!-- ignore start -->(.*?)<!-- ignore end -->/g;
-    content.replace(regex, "");
+    // @ts-ignore
+    const regex: RegExp = /<!-- ignore start -->(.*?)<!-- ignore end -->/gs;
+    content = content.replace(regex, "");
     return content;
   };
 }
