@@ -215,7 +215,11 @@ export class Builder3 {
           isTableOfContents: true,
           metadataFile: rConf.sourcePath+ `/${category}/pandoc-config.yaml`
         };
-        await this.pandoc.generate(config);
+        try {
+          await this.pandoc.generate(config);
+        } catch (err) {
+          console.log(err);
+        }
       }
     } else {
       this.logger.throwError("There are not categories in request");

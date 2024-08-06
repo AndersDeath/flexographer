@@ -12,11 +12,18 @@ export class Pandoc {
   constructor() {
   }
 
-  async generate(input: PandocInput): Promise<void> {
+  async generate(input: PandocInput): Promise<any> {
     const cmd: string = this.createCommand(input);
     const { stdout, stderr } = await exec(cmd);
     console.log("stdout:", stdout);
     console.log("stderr:", stderr);
+    return new Promise((resolve, reject) => {
+      if(stderr) {
+        reject(stderr)
+      } else {
+        resolve(stdout);
+      }
+     })
   }
 
   createCommand(input: PandocInput): string {

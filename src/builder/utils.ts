@@ -2,9 +2,6 @@ import path from "path";
 import {pageBreakHtml} from "./ui";
 
 export class Utils {
-  constructor() {
-    console.log("these are utils");
-  }
 
   public async replaceGlobalImagePathToLocal(
       content: string

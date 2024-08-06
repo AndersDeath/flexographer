@@ -1,4 +1,4 @@
-export interface RawContent {
+export class RawContent {
   category: string;
   metadata: any;
   content: string;
@@ -6,7 +6,7 @@ export interface RawContent {
   fileName: string;
 }
 
-export interface Config {
+export class Config {
   sourceRootPath: string;
   htmlOutputPath: string;
   markdownOutputPath: string;
@@ -16,7 +16,7 @@ export interface Config {
   imageFolderPath: string;
 }
 
-export interface B3File {
+export class B3File {
   name: string;
   content: string;
   path: string;
@@ -30,7 +30,7 @@ export enum OutputFileTypes {
   MD = "md",
 }
 
-export interface RunConfig {
+export class RunConfig {
   targets?: string[];
   bookSettings?: {
     categories: string[];
